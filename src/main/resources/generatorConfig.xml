@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 处理1 -->
+	<classPathEntry
+		location="E:\Maven\repo\mysql\mysql-connector-java\5.1.35\mysql-connector-java-5.1.35.jar" />
+	<!-- 指定运行环境是mybatis3的版本 -->
+	<context id="testTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否取消注释 -->
+			<property name="suppressAllComments" value="true" />
+			<!-- 是否生成注释代时间戳 -->
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<!-- 处理2 jdbc 连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/scm?useUnicode=true&amp;characterEncoding=UTF-8"
+			userId="root" password="orionpax">
+		</jdbcConnection>
+
+		<!--处理3 targetPackage指定模型在生成在哪个包 ,targetProject指定项目的src, -->
+		<javaModelGenerator targetPackage="orion_pax.entity"
+			targetProject="SCM_Project/src/main/java">
+			<!-- 去除字段前后空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 处理4 配置SQL映射文件生成信息 -->
+		<sqlMapGenerator targetPackage="orion_pax.mapper"
+			targetProject="SCM_Project/src/main/java" />
+		<!--处理5 配置dao接口生成信息 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="orion_pax.dao" targetProject="SCM_Project/src/main/java" />
+
+		<!--处理6 指定表及实体类的映射 -->
+		<table tableName="account" domainObjectName="Account"
+			enableSelectByExample="true" enableDeleteByExample="true"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableInsert="true" />
+
+		<table tableName="supplier" domainObjectName="Supplier"
+			enableSelectByExample="true" enableDeleteByExample="true"
+			enableCountByExample="true" enableUpdateByExample="true"
+			enableInsert="true" />
+	</context>
+</generatorConfiguration>

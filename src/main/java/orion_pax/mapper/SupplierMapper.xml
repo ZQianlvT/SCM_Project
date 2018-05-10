@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orion_pax.dao.SupplierMapper">
+	<resultMap id="supplierMap" type="orion_pax.entity.Supplier">
+		<id column="sup_id" property="supId" jdbcType="INTEGER" />
+		<result column="sup_name" property="supName" jdbcType="VARCHAR" />
+		<result column="sup_linkman" property="supLinkman" jdbcType="VARCHAR" />
+		<result column="sup_phone" property="supPhone" jdbcType="VARCHAR" />
+		<result column="sup_address" property="supAddress" jdbcType="VARCHAR" />
+		<result column="sup_remark" property="supRemark" jdbcType="VARCHAR" />
+		<result column="sup_pay" property="supPay" jdbcType="DECIMAL" />
+		<result column="sup_type" property="supType" jdbcType="INTEGER" />
+	</resultMap>
+
+	<insert id="insert" parameterType="orion_pax.entity.Supplier">
+		insert into
+		supplier(sup_id,sup_name,sup_linkman,sup_phone,sup_address,sup_remark,sup_pay,sup_type)
+		values(#{supId},#{supName},#{supLinkman},#{supPhone},#{supAddress},#{supRemark},#{supPay},#{supType})
+	</insert>
+
+	<update id="updateByPK" parameterType="orion_pax.entity.Supplier">
+		UPDATE supplier SET sup_name =
+		#{supName},sup_linkman = #{supLinkman},sup_phone =
+		#{supPhone},sup_address =
+		#{supAddress},sup_remark =
+		#{supRemark},sup_pay = #{supPay},sup_type =
+		#{supType} WHERE sup_id =
+		#{supId}
+	</update>
+
+	<!-- 根据keyWord分页查询 -->
+	<select id="getPage" parameterType="orion_pax.entity.Page"
+		resultMap="supplierMap">
+		SELECT
+		sup_id,sup_name,sup_linkman,sup_phone,sup_address,sup_remark,sup_pay,sup_type
+		FROM supplier
+		<where>
+			<if test="keyWord!=null">
+				and sup_name LIKE '%' #{keyWord} '%' or sup_linkman LIKE
+				'%' #{keyWord} '%'
+			</if>
+		</where>
+		LIMIT #{start},#{rows}
+	</select>
+
+	<!-- 根据Page分页查询 -->
+	<select id="getPageCounts" parameterType="orion_pax.entity.Page"
+		resultType="_int">
+		SELECT COUNT(*) FROM supplier
+		<where>
+			<if test="keyWord!=null">
+				and sup_name LIKE '%' #{keyWord} '%' or sup_linkman LIKE
+				'%' #{keyWord} '%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据id列表删除 -->
+	<delete id="deleteArr">
+		DELETE FROM supplier WHERE sup_id in
+		<foreach collection="array" item="supId" open="(" close=")"
+			separator=",">
+			#{supId}
+		</foreach>
+	</delete>
+</mapper>
