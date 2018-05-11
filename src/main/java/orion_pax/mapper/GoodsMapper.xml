@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orion_pax.dao.GoodsMapper">
+	<resultMap id="goodsMap" type="orion_pax.entity.Goods">
+		<id column="goods_Id" property="goodsId" jdbcType="VARCHAR" />
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goods_unit" property="goodsUnit" jdbcType="VARCHAR" />
+		<result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+		<result column="goods_color" property="goodsColor" jdbcType="VARCHAR" />
+		<result column="goods_store" property="goodsStore" jdbcType="INTEGER" />
+		<result column="goods_limit" property="goodsLimit" jdbcType="INTEGER" />
+		<result column="goods_commission" property="goodsCommission"
+			jdbcType="DECIMAL" />
+		<result column="goods_producer" property="goodsProducer"
+			jdbcType="VARCHAR" />
+		<result column="goods_remark" property="goodsRemark" jdbcType="VARCHAR" />
+		<result column="goods_sel_price" property="goodsSelPrice"
+			jdbcType="DECIMAL" />
+		<result column="goods_buy_price" property="goodsBuyPrice"
+			jdbcType="DECIMAL" />
+	</resultMap>
+
+	<!-- 根据keyWord分页查询 -->
+	<select id="getPage" parameterType="orion_pax.entity.Page"
+		resultMap="goodsMap">
+		SELECT
+		goods_Id,goods_name,goods_unit,goods_color,goods_remark,goods_sel_price,goods_buy_price
+		FROM goods
+		<where>
+			<if test="keyWord!=null">
+				and goods_name LIKE '%' #{keyWord} '%'
+			</if>
+		</where>
+		LIMIT #{start},#{rows}
+	</select>
+
+	<!-- 根据Page分页查询 -->
+	<select id="getPageCounts" parameterType="orion_pax.entity.Page"
+		resultType="_int">
+		SELECT COUNT(*) FROM goods
+		<where>
+			<if test="keyWord!=null">
+				and goods_name LIKE '%' #{keyWord} '%'
+			</if>
+		</where>
+	</select>
+</mapper>

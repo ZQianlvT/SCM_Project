@@ -92,7 +92,7 @@
 						return false;
 					}	
 					parent.$('#win').window({ 
-							title:'添加供应商',      
+							title:'修改供应商',      
 						    width:600,    
 						    height:400,    
 						    modal:true,
@@ -140,7 +140,7 @@
 					keyWord : value
 				});
 			},
-			prompt : '请输入商品名称'
+			prompt : '请输入供应商名称'
 		});
 
 	});

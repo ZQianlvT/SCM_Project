@@ -44,9 +44,7 @@ a.l-btn span.l-btn-left {
 					//可以加载内容填充到选项卡，页面有Js时，也可加载
 					content:"<iframe src='"+text+"' title='"+title+"' height='100%' width='100%' frameborder='0px' ></iframe>"
 				});
-
 			}
-			
 			return false;
 		});
 	});
@@ -70,7 +68,7 @@ a.l-btn span.l-btn-left {
 			<div title="进货管理" style="overflow:auto;padding:10px;"
 				data-options="selected:true">
 				<ul>
-					<li><a id="btn" href="#" class="easyui-linkbutton">供应商管理</a>
+					<li><a id="btn" href="${proPath }/base/goURL/goods/addStore" class="easyui-linkbutton">商品入库</a>
 					</li>
 					<li><a id="btn" href="#" class="easyui-linkbutton">商品管理</a>
 					</li>

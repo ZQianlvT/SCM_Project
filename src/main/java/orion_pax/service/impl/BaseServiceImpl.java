@@ -9,7 +9,11 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import orion_pax.dao.AccountMapper;
+import orion_pax.dao.AccountRecordsMapper;
 import orion_pax.dao.BaseMapper;
+import orion_pax.dao.BuyOrderDetailMapper;
+import orion_pax.dao.BuyOrderMapper;
+import orion_pax.dao.GoodsMapper;
 import orion_pax.dao.SupplierMapper;
 import orion_pax.entity.Page;
 import orion_pax.service.BaseService;
@@ -23,6 +27,18 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
 	@Autowired
 	protected AccountMapper accountMapper;
+	
+	@Autowired
+	protected GoodsMapper goodsMapper;
+	
+	@Autowired
+	protected BuyOrderMapper buyOrderMapper;
+	
+	@Autowired
+	protected BuyOrderDetailMapper buyOrderDetailMapper;
+	
+	@Autowired
+	protected AccountRecordsMapper accountRecordsMapper;
 
 	@PostConstruct
 	// 在构造方法后，初化前执行
