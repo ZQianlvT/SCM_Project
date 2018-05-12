@@ -46,9 +46,13 @@
 		<table tableName="goods" domainObjectName="Goods"
 			enableSelectByExample="true" enableDeleteByExample="true"
 			enableCountByExample="true" enableUpdateByExample="true"
-			enableInsert="true" /> -->
+			enableInsert="true" /> 
 		<table tableName="buy_order" domainObjectName="BuyOrder" />
 		<table tableName="buy_order_detail" domainObjectName="BuyOrderDetail" />
 		<table tableName="account_records" domainObjectName="AccountRecords" />
+		<table tableName="sys_param" domainObjectName="SysParam" />
+		-->
+		<table tableName="test" domainObjectName="Test" />
+		
 	</context>
 </generatorConfiguration>

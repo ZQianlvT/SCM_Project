@@ -40,19 +40,9 @@
 		<load-on-startup>1</load-on-startup>
 		<async-supported>true</async-supported>
 	</servlet>
-	<servlet>
-		<servlet-name>SysParamServlet</servlet-name>
-		<servlet-class>orion_pax.servlet.SysParamServlet</servlet-class>
-		<load-on-startup>2</load-on-startup>
-	</servlet>
-
 
 	<servlet-mapping>
 		<servlet-name>SpringMVC</servlet-name>
 		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>SysParamServlet</servlet-name>
-		<url-pattern>/sysParamServlet</url-pattern>
 	</servlet-mapping>
 </web-app>

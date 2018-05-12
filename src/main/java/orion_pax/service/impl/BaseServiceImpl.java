@@ -15,6 +15,7 @@ import orion_pax.dao.BuyOrderDetailMapper;
 import orion_pax.dao.BuyOrderMapper;
 import orion_pax.dao.GoodsMapper;
 import orion_pax.dao.SupplierMapper;
+import orion_pax.dao.SysParamMapper;
 import orion_pax.entity.Page;
 import orion_pax.service.BaseService;
 
@@ -39,6 +40,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	
 	@Autowired
 	protected AccountRecordsMapper accountRecordsMapper;
+	
+	@Autowired
+	protected SysParamMapper sysParamMapper;
 
 	@PostConstruct
 	// 在构造方法后，初化前执行
