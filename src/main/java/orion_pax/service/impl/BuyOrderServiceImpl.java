@@ -15,7 +15,6 @@ public class BuyOrderServiceImpl extends BaseServiceImpl<BuyOrder> implements
 
 	@Override
 	public int insertBuyOrder(BuyOrder buyOrder) {
-		System.out.println("-----------------service:" + buyOrder);
 		int i = 0;
 		// 1.采购入库信息表 2.入库明细表3.账务表 4.库存表
 		// 生成主键，一般业务都会有类型定义 例如：bo表示进货 业务， ct表示退货业务

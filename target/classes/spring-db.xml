@@ -24,8 +24,6 @@
 		<property name="initialPoolSize" value="${initialSize}"></property>
 		<!-- 连接池最大数量 -->
 		<property name="maxPoolSize" value="${maxActive}"></property>
-		<!-- 连接池最大空闲 -->
-		<property name="maxIdleTime" value="${maxIdle}"></property>
 	</bean>
 
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->

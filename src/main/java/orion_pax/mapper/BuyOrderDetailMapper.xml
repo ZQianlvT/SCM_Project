@@ -16,16 +16,24 @@
 		<result column="bod_imei_list" property="bodImeiList" jdbcType="LONGVARCHAR" />
 	</resultMap>
 
-	<insert id="insert" parameterType="orion_pax.entity.BuyOrderDetail">
-		insert into buy_order (bo_id, sup_id, sh_id,
-		bo_date, bo_payable, bo_paid,
-		bo_arrears, bo_original, bo_remark,
-		bo_attn, bo_operator)
-		values (#{boId,jdbcType=VARCHAR}, #{supId,jdbcType=INTEGER},
-		#{shId,jdbcType=VARCHAR},
-		#{boDate,jdbcType=DATE}, #{boPayable,jdbcType=DECIMAL}, #{boPaid,jdbcType=DECIMAL},
-		#{boArrears,jdbcType=DECIMAL}, #{boOriginal,jdbcType=VARCHAR},
-		#{boRemark,jdbcType=VARCHAR},
-		#{boAttn,jdbcType=VARCHAR}, #{boOperator,jdbcType=INTEGER})
+	<insert id="insertList">
+		insert into buy_order_detail (bod_id, goods_id, goods_name,
+		goods_unit, goods_type, goods_color,
+		bod_amount, bod_buy_price, bod_total_price,
+		bo_id, bod_imei_list)
+		values
+		<foreach collection="list" item="buyOrderDetail" separator=",">
+			(#{buyOrderDetail.bodId,jdbcType=VARCHAR},
+			#{buyOrderDetail.goodsId,jdbcType=VARCHAR},
+			#{buyOrderDetail.goodsName,jdbcType=VARCHAR},
+			#{buyOrderDetail.goodsUnit,jdbcType=VARCHAR},
+			#{buyOrderDetail.goodsType,jdbcType=VARCHAR},
+			#{buyOrderDetail.goodsColor,jdbcType=VARCHAR},
+			#{buyOrderDetail.bodAmount,jdbcType=INTEGER},
+			#{buyOrderDetail.bodBuyPrice,jdbcType=DECIMAL},
+			#{buyOrderDetail.bodTotalPrice,jdbcType=DECIMAL},
+			#{buyOrderDetail.boId,jdbcType=VARCHAR},
+			#{buyOrderDetail.bodImeiList,jdbcType=LONGVARCHAR})
+		</foreach>
 	</insert>
 </mapper>

@@ -46,7 +46,13 @@
 				iconCls : 'icon-edit',
 				text : '提交入库',
 				handler : function() {
-					alert("提交入库");
+					var rows = $("#dg").datagrid("getRows");
+					$('#ff').form('submit', {    
+						    url:"${proPath}/buyOrder/insert",    
+						    onSubmit: function(param){    
+						        param.rows = JSON.stringify(rows);    
+						    }    
+					});
 				}
 			}],
 			columns : [ [ {
@@ -103,14 +109,14 @@
 
 </head>
 <body>
-	<form style="padding:15px;margin:0px;background:#eee;" id="ff" action="">
+	<form style="padding:15px;margin:0px;background:#eee;" id="ff">
 		请填写采购信息：<br> 供应商：
 		<input type="hidden" id="supId" name="supId" />
 		<input type="text" id="supName" name="supName" /><br>
 		仓库：
 		<input type="text" id="shId" name="shId" /><br>
 		日期：
-		<input type="text" id="boDate" class="easyui-datebox" name="boDate" required="required"></input><br>
+		<input type="text" id="boDate" class="easyui-datebox" name="boDate"></input><br>
 		应付：
 		<input type="text" id="boPayable" name="boPayable" /><br>
 		已付：
