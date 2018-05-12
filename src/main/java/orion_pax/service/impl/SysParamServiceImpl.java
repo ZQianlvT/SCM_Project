@@ -25,7 +25,6 @@ public class SysParamServiceImpl extends BaseServiceImpl<SysParam> implements
 			if ("1".equals(sysParam.getSysParamType())) {
 				// 获取需要执行的sql
 				String sql = sysParam.getSysParamValue();
-				System.out.println("sql:" + sql);
 				// 执行sql,查询其它表的数据
 				List<SysParam> selectOtherTableList = sysParamMapper
 						.selectOtherTable(sql);

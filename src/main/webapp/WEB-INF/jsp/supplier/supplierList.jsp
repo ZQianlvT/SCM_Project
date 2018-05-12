@@ -121,6 +121,14 @@
 				width : 100
 
 			}, {
+				field : 'supType',
+				title : '供应商等级',
+				align : 'left',
+				width : 100,
+				formatter: function(value,row,index){
+			    	return valueToText("${applicationScope.sysParam.supType}",value);
+				}
+			},{
 				field : 'supAddress',
 				title : '供应商地址',
 				align : 'left',

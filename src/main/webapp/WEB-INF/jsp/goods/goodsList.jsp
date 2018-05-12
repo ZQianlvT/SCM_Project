@@ -118,8 +118,10 @@
 				field : 'goodsColor',
 				title : '商品颜色',
 				align : 'left',
-				width : 100
-
+				width : 100,
+				formatter: function(value,row,index){
+			    	return valueToText("${applicationScope.sysParam.goodsColor}",value);
+				}
 			}, {
 				field : 'goodsSelPrice',
 				title : '原价',
