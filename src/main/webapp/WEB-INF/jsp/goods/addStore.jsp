@@ -13,6 +13,7 @@
 </style>
 <script type="text/javascript">
 	$(function() {
+		var currRowIndex = undefined; 
 		$('#dg')
 				.datagrid(
 						{
@@ -93,11 +94,13 @@
 								field : 'bodAmount',
 								title : '数量',
 								align : 'left',
-								width : 100
+								width : 100,
+								editor : type = 'numberbox'
 							}, {
 								field : 'bodBuyPrice',
 								title : '进价（元）',
-								width : 100
+								width : 100,
+								editor : type = 'numberbox'
 							}, {
 								field : 'bodTotalPrice',
 								title : '总价（元）',
@@ -106,9 +109,38 @@
 								field : 'bodImeiList',
 								title : '串号',
 								width : 100
-							} ] ]
+							} ] ],
+							onDblClickCell : function(rowIndex, field, value) {
+								$(this).datagrid('beginEdit', rowIndex);
+								var ed = $(this).datagrid('getEditor', {
+									index : rowIndex
+								});
+								currRowIndex = rowIndex;
+							},
+							onClickCell : function(rowIndex, field, value) {
+							if(currRowIndex!=undefined){
+								var edBA = $(this).datagrid('getEditor', {
+									index : rowIndex,
+									field : 'bodAmount'
+								});
+								var edBBP = $(this).datagrid('getEditor', {
+									index : rowIndex,
+									field : 'bodBuyPrice'
+								});
+								var bodAmountValue= $(edBA.target).numberbox('getValue');
+								var bodBuyPriceValue= $(edBBP.target).numberbox('getValue');
+								var totalPrice = bodAmountValue * bodBuyPriceValue;
+								$(this).datagrid('endEdit',currRowIndex);
+								$(this).datagrid('updateRow',{
+									index: currRowIndex,
+									row: {
+										bodTotalPrice: totalPrice
+									}
+								});
+								currRowIndex = undefined; 
+							}
+							}
 						});
-
 		$('#supName')
 				.searchbox(
 						{
