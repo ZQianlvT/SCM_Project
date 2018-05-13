@@ -73,48 +73,57 @@
 															});
 										}
 									} ],
-							columns : [ [ {
-								checkbox : true
-							}, {
-								field : 'goodsId',
-								title : '商品编号',
-								align : 'left',
-								width : 100
-							}, {
-								field : 'goodsName',
-								title : '商品名',
-								align : 'left',
-								width : 100
-							}, {
-								field : 'goodsColor',
-								title : '商品颜色',
-								align : 'left',
-								width : 100
+							columns : [ [
+									{
+										checkbox : true
+									},
+									{
+										field : 'goodsId',
+										title : '商品编号',
+										align : 'left',
+										width : 100
+									},
+									{
+										field : 'goodsName',
+										title : '商品名',
+										align : 'left',
+										width : 100
+									},
+									{
+										field : 'goodsColor',
+										title : '商品颜色',
+										align : 'left',
+										width : 100
 
-							}, {
-								field : 'bodAmount',
-								title : '数量',
-								align : 'left',
-								width : 100,
-								editor : type = 'numberbox'
-							}, {
-								field : 'bodBuyPrice',
-								title : '进价（元）',
-								width : 100,
-								editor : type = 'numberbox'
-							}, {
-								field : 'bodTotalPrice',
-								title : '总价（元）',
-								width : 100
-							}, {
-								field : 'bodImeiList',
-								title : '串号',
-								width : 100,
-								formatter : function(value, row, index) {
-									return "<span title="+value+">"+value+"</span>";
-								}
+									},
+									{
+										field : 'bodAmount',
+										title : '数量',
+										align : 'left',
+										width : 100,
+										editor : type = 'numberbox'
+									},
+									{
+										field : 'bodBuyPrice',
+										title : '进价（元）',
+										width : 100,
+										editor : type = 'numberbox'
+									},
+									{
+										field : 'bodTotalPrice',
+										title : '总价（元）',
+										width : 100
+									},
+									{
+										field : 'bodImeiList',
+										title : '串号',
+										width : 100,
+										formatter : function(value, row, index) {
+											return "<span title="+value+">"
+													+ value + "</span>";
+										}
 
-							} ] ],
+									} ] ],
 							onDblClickCell : function(rowIndex, field, value) {
 								$(this).datagrid('beginEdit', rowIndex);
 								var ed = $(this).datagrid('getEditor', {
@@ -166,6 +175,7 @@
 							},
 							prompt : '请选择供应商'
 						});
+		$('#supName').searchbox("textbox").attr('disabled',true);
 	});
 </script>
 

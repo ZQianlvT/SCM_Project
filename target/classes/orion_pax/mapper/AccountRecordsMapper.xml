@@ -20,7 +20,8 @@
 		insert into account_records (ar_id, sup_id, ar_date,
 		ar_order_id, ar_bus_type, ar_payable,
 		ar_paid, ar_arrears, ar_discount,
-		ar_attn, ar_operator, ar_remark
+		ar_attn, ar_operator,
+		ar_remark
 		)
 		values (#{arId,jdbcType=VARCHAR}, #{supId,jdbcType=INTEGER},
 		#{arDate,jdbcType=DATE},
@@ -30,4 +31,14 @@
 		#{arAttn,jdbcType=VARCHAR}, #{arOperator,jdbcType=INTEGER}, #{arRemark,jdbcType=VARCHAR}
 		)
 	</insert>
+
+	<!-- 统计某个时间段的供应商的采购金额 -->
+	<select id="selectSupplier" parameterType="map" resultType="map">
+	  <![CDATA[ 
+	  	select sum(ar_payable) total,sup_name from account_records inner join supplier 
+	  	on account_records.sup_id=supplier.sup_id 
+	  	where ar_date >#{start} and ar_date<=#{end} and ar_bus_type='bo' 
+	  	group by sup_name
+	  ]]>
+	</select>
 </mapper>

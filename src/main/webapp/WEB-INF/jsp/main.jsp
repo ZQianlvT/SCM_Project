@@ -74,10 +74,10 @@ a.l-btn span.l-btn-left {
 					</li>
 				</ul>
 			</div>
-			<div title="仓库管理" style="overflow:auto;padding:10px;"
+			<div title="统计报表" style="overflow:auto;padding:10px;"
 				data-options="selected:true">
 				<ul>
-					<li><a id="btn" href="#" class="easyui-linkbutton">供应商管理</a>
+					<li><a id="btn" href="${proPath}/base/goURL/supplier/statisticsSupplier" class="easyui-linkbutton">供应商采购金额统计</a>
 					</li>
 					<li><a id="btn" href="#" class="easyui-linkbutton">商品管理</a>
 					</li>
