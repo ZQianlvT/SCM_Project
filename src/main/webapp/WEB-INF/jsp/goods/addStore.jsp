@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/common/common.jspf"%>
 
@@ -13,7 +14,7 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		var currRowIndex = undefined; 
+		var currRowIndex = undefined;
 		$('#dg')
 				.datagrid(
 						{
@@ -108,7 +109,11 @@
 							}, {
 								field : 'bodImeiList',
 								title : '串号',
-								width : 100
+								width : 100,
+								formatter : function(value, row, index) {
+									return "<span title="+value+">"+value+"</span>";
+								}
+
 							} ] ],
 							onDblClickCell : function(rowIndex, field, value) {
 								$(this).datagrid('beginEdit', rowIndex);
@@ -118,27 +123,30 @@
 								currRowIndex = rowIndex;
 							},
 							onClickCell : function(rowIndex, field, value) {
-							if(currRowIndex!=undefined){
-								var edBA = $(this).datagrid('getEditor', {
-									index : rowIndex,
-									field : 'bodAmount'
-								});
-								var edBBP = $(this).datagrid('getEditor', {
-									index : rowIndex,
-									field : 'bodBuyPrice'
-								});
-								var bodAmountValue= $(edBA.target).numberbox('getValue');
-								var bodBuyPriceValue= $(edBBP.target).numberbox('getValue');
-								var totalPrice = bodAmountValue * bodBuyPriceValue;
-								$(this).datagrid('endEdit',currRowIndex);
-								$(this).datagrid('updateRow',{
-									index: currRowIndex,
-									row: {
-										bodTotalPrice: totalPrice
-									}
-								});
-								currRowIndex = undefined; 
-							}
+								if (currRowIndex != undefined) {
+									var edBA = $(this).datagrid('getEditor', {
+										index : rowIndex,
+										field : 'bodAmount'
+									});
+									var edBBP = $(this).datagrid('getEditor', {
+										index : rowIndex,
+										field : 'bodBuyPrice'
+									});
+									var bodAmountValue = $(edBA.target)
+											.numberbox('getValue');
+									var bodBuyPriceValue = $(edBBP.target)
+											.numberbox('getValue');
+									var totalPrice = bodAmountValue
+											* bodBuyPriceValue;
+									$(this).datagrid('endEdit', currRowIndex);
+									$(this).datagrid('updateRow', {
+										index : currRowIndex,
+										row : {
+											bodTotalPrice : totalPrice
+										}
+									});
+									currRowIndex = undefined;
+								}
 							}
 						});
 		$('#supName')

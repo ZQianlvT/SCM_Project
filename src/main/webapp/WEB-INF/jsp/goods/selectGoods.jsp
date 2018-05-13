@@ -82,7 +82,7 @@
 			data-options="min:0,precision:2"
 		>
 		手机串号：
-		<input type="text" id='bodImeiList' name='bodImeiList' class="easyui-numberbox">
+		<input type="text" id='bodImeiList' name='bodImeiList'>
 	</form>
 </body>
 </html>
